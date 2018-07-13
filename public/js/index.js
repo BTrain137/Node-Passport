@@ -27,6 +27,6 @@ document.addEventListener("submit", function (event) {
         }
     })
         // .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => window.location.href = data.url) 
         .catch(error => console.error(error.message));
 });
