@@ -55,13 +55,16 @@ passport.use('login', new LocalStrategy({
     );
   }));
 
-passport.use('signup', new LocalStrategy({
+passport.use("signup", new LocalStrategy({
   passReqToCallback: true
 },
   function (req, username, password, done) {
-
+    console.log("passport - signup");
+    
     findOrCreateUser = function () {
-      // find a user in Mongo with provided username
+      console.log(req.body);
+      // return done(null, "yes")
+    //   // find a user in Mongo with provided username
       User.findOne({ 'username': username }, function (err, user) {
         // In case of any error return
         if (err) {

@@ -26,7 +26,7 @@ document.addEventListener("submit", function (event) {
             "Content-Type": "application/json"
         }
     })
-        .then(response => response.json())
+        // .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error(error.message));
 });

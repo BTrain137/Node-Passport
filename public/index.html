@@ -5,67 +5,35 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="./css/style.css">
-	<title>Login/Signup</title>
+	<title>Home</title>
+	<style>
+		body {
+			display: flex;
+			justify-content: center;
+		}
+
+		main {
+			flex-basis: 500px;
+		}
+		
+	</style>
 </head>
 
 <body>
-	<div class="form-wrap">
-		<div class="tabs">
-			<h3 class="signup-tab">
-				<a class="active" href="#signup-tab-content">Sign Up</a>
-			</h3>
-			<h3 class="login-tab">
-				<a href="#login-tab-content">Login</a>
-			</h3>
-		</div>
-		<!--.tabs-->
 
-		<div class="tabs-content">
-			<div id="signup-tab-content" class="active">
-				<form class="signup-form">
-					<input type="email" class="input" name="user_email" id="user_email" autocomplete="off" placeholder="Email">
-					<input type="text" class="input" name="user_name" id="user_name" autocomplete="off" placeholder="Username">
-					<input type="password" class="input" name="user_pass" id="user_pass" autocomplete="off" placeholder="Password">
-					<input id="sign-up" type="submit" class="button" value="Sign Up">
-				</form>
-				<!--.login-form-->
-				<div class="help-text">
-					<p>By signing up, you agree to our</p>
-					<p>
-						<a href="#">Terms of service</a>
-					</p>
-				</div>
-				<!--.help-text-->
-			</div>
-			<!--.signup-tab-content-->
+	<main>
+		<header>
+			<h1>Home</h1>
+			<p></p>
+		</header>
 
-			<div id="login-tab-content">
-				<form class="login-form">
-					<input type="text" class="input" name="user_login" id="user_login" autocomplete="off" placeholder="Email or Username">
-					<input type="password" class="input" name="user_pass" id="user_pass" autocomplete="off" placeholder="Password">
-					<!-- <input type="checkbox" class="checkbox" id="remember_me"> -->
-					<!-- <label for="remember_me">Remember me</label> -->
+		<article>
+			<h2>Use Case</h2>
 
-					<input id="login" type="submit" class="button" value="Login">
-				</form>
-				<!--.login-form-->
-				<div class="help-text">
-					<p>
-						<a href="#">Forget your password?</a>
-					</p>
-				</div>
-				<!--.help-text-->
-			</div>
-			<!--.login-tab-content-->
-		</div>
-		<!--.tabs-content-->
-	</div>
-	<!--.form-wrap-->
+			 <a href="/signup"><h1>Sign up</h1></a>
+		</article>
+	</main>
 
-	<script src="./vendor/jquery/jquery-3.2.1.min.js"></script>
-	<script src="./js/main.js"></script>
-	<script src="./js/index.js"></script>
 </body>
 
 </html>
