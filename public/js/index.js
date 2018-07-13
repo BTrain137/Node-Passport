@@ -1,18 +1,32 @@
-const signup = document.getElementById('signup')
-const name = document.getElementById('name')
-const email = document.getElementById('email')
-const company = document.getElementById('company')
-const password = document.getElementById('pw')
-const password2 = document.getElementById('pw2')
+document.addEventListener("submit", function (event) {
+    event.preventDefault();
 
-signup.addEventListener('click', function(event){
-    event.preventDefault()
+    let form;
+    let url;
 
-    // console.log(name.value)
-    // console.log(email.value)
-    // console.log(company.value)
+    if (event.target.className === "signup-form") {
+        form = document.getElementsByClassName("signup-form");
+        url = "/api/signup";
+    } else {
+        form = document.getElementsByClassName("login-form");
+        url = "/api/login";
+    }
 
-    
-})
+    const formData = new FormData(form[0]);
+    const userData = {};
 
-console.log("hello")
+    for (let pair of formData.entries()) {
+        userData[pair[0]] = pair[1];
+    }
+
+    fetch(url, {
+        method: "POST",
+        body: JSON.stringify(userData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error(error.message));
+});
