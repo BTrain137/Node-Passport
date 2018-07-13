@@ -8,25 +8,28 @@ const path = require("path");
 // As with any middleware it is quintessential to call next()
 // if the user is authenticated
 const isAuthenticated = function(req, res, next) {
+  console.log(req.user, req.isAuthenticated());
   if (req.isAuthenticated()) return next();
   res.redirect("/");
 };
 
 /* GET login page. */
 router.get("/", function(req, res) {
-  // Display the Login page with any flash message, if any
-  // res.render("index", { message: req.flash("message") });
-  console.log("get home");
   
-  res.sendFile(path.join(__dirname, "../public/index.html"));
+  console.log("cookies", req.cookies);
+  console.log("signed Cookies", req.signedCookies);
+  console.log("session", req.session);
+  console.log("session Cookies", req.session.cookie);
+
+  res.sendFile(path.join(__dirname, "../public/index2.html"));
 });
 
 /* Handle Login POST */
 router.post(
-  "/login",
+  "/api/login",
   passport.authenticate("login", {
     successRedirect: "/home",
-    failureRedirect: "/",
+    failureRedirect: "/failure",
     failureFlash: true
   })
 );
@@ -56,8 +59,8 @@ router.get("/signout", function(req, res) {
 });
 
 /* GET Home Page */
-router.get("/home", isAuthenticated, function(req, res) {
-  res.send(path.join(__dirname, "../public/madeit.html"))
+router.get("/home", function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/madeit.html"))
 });
 
 module.exports = router;

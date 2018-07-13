@@ -13,8 +13,8 @@ const createHash = function (password) {
 }
 
 passport.serializeUser(function (user, done) {
-  console.log("=========serializeUser=============");
-  
+  console.log("=========serializeUser=============", user);
+
   done(null, user._id);
 });
 
@@ -31,6 +31,7 @@ passport.use('login', new LocalStrategy({
 },
   function (req, username, password, done) {
     // check in mongo if a user with username exists or not
+    console.log(req.body);
     User.findOne({ 'username': username },
       function (err, user) {
         // In case of any error, return using the done method
@@ -60,9 +61,8 @@ passport.use("signup", new LocalStrategy({
 },
   function (req, username, password, done) {
     console.log("passport - signup");
-    
+    console.log(req.body);
     findOrCreateUser = function () {
-      console.log(req.body);
       // return done(null, "yes")
     //   // find a user in Mongo with provided username
       User.findOne({ 'username': username }, function (err, user) {
