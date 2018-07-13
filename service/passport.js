@@ -27,6 +27,7 @@ passport.use('login', new LocalStrategy({
     passReqToCallback : true
   },
   function(req, username, password, done) { 
+    console.log(req.body)
     // check in mongo if a user with username exists or not
     User.findOne({ 'username' :  username }, 
       function(err, user) {
@@ -56,7 +57,7 @@ passport.use('login', new LocalStrategy({
     passReqToCallback : true
   },
   function(req, username, password, done) {
-    
+    console.log(req.body)
     findOrCreateUser = function(){
       // find a user in Mongo with provided username
       User.findOne({'username':username},function(err, user) {
