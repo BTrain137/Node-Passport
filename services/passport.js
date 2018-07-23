@@ -26,9 +26,11 @@ passport.serializeUser(function (user_id, done) {
  * Deserialize user fires when the browser makes calls to routes
  * Req.user is then created from this step
  * A database call is made to grab all the user's data
- * @param {object} user_id
  * TODO possibly the user id is enough and each route will handle it's 
  * own database call to save latency
+ * Possibly req.login can send basic info to be serialize so calls 
+ * don't have to be made every time the database is hit
+ * @param {object} user_id given from req.login();
  */
 passport.deserializeUser(function (user_id, done) {
     const userID = user_id.user_id || user_id[0].user_id; 
@@ -68,6 +70,14 @@ passport.use("login", new LocalStrategy(
             bcrypt.compare(password, hash, function (err, response) {
                 if (err) throw err;
 
+                /**
+                 * Only the ID of the user is sent to be serialize 
+                 * When the user's ID comes back to make a request there on after
+                 * A database call is made at Deserialize to retrieve user data
+                 * TODO this may not be the best due to calling on the database
+                 * every time a different page is request, however S.P.A may
+                 * not require multiple call
+                 */
                 if (response === true) {
                     return done(null, { user_id: result[0].id });
                 } else {
