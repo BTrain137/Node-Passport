@@ -9,7 +9,6 @@ const passport = require('passport');
 const expressSession = require('express-session');
 
 const app = express();
-// const PORT = process.env.PORT || 3000;
 
 //Mongo database
 require('./database')
@@ -30,9 +29,6 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-// Require in all passport service
-const passportService = require('./service/passport.js')
 
 // Check login states 
 const index = require('./routes/passport');
